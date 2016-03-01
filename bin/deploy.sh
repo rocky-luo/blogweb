@@ -32,7 +32,7 @@ if [ ! -d $JETTY_BASE_DIR ]; then
     echo "mkdir -p $JETTY_BASE_DIR/webapps"
     mkdir -p $JETTY_BASE_DIR/webapps
     cd $JETTY_BASE_DIR
-    java -jar $JETTY_HOME/start.jar --add-to-startd=http,deploy,jsp
+    java -jar $JETTY_HOME/start.jar --add-to-startd=http,deploy,jsp,logging,requestlog
 fi
 cd $PRO_DIR
 mvn clean -U -Dmaven.test.skip=true package
