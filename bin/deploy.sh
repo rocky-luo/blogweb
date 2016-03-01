@@ -6,7 +6,11 @@ PRO_DIR="$TMP_DIR/$PRO_NAME"
 PRO_SSH="git@github.com:rocky-luo/blogweb.git"
 JETTY_BASE_SUF="-jettybase"
 JETTY_BASE_DIR="$TMP_DIR/$PRO_NAME$JETTY_BASE_SUF"
-lsof -i :8080 |grep java | awk '{print $2}' | xargs kill -9
+PRE_PID=`lsof -i :8080 |grep java | awk '{print $2}'`
+if [  "$PRE_PID"x != ""x ]; then
+    echo "stop pre proccess..."
+    kill -9 $PRE_PID
+fi
 if [ ! -d $PRO_DIR ]; then
     TMP_CUR_PWD=`pwd`
     echo "mkdir -p $PRO_DIR"
