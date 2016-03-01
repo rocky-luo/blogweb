@@ -6,7 +6,7 @@ PRO_DIR="$TMP_DIR/$PRO_NAME"
 PRO_SSH="git@github.com:rocky-luo/blogweb.git"
 JETTY_BASE_SUF="-jettybase"
 JETTY_BASE_DIR="$TMP_DIR/$PRO_NAME$JETTY_BASE_SUF"
-#ps -e|grep jetty|awk '{print $1}'|xargs kill -9
+lsof -i :8080 |grep java | awk '{print $2}' | xargs kill -9
 if [ ! -d $PRO_DIR ]; then
     TMP_CUR_PWD=`pwd`
     echo "mkdir -p $PRO_DIR"
