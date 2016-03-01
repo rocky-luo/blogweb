@@ -6,6 +6,7 @@ PRO_DIR="$TMP_DIR/$PRO_NAME"
 PRO_SSH="git@github.com:rocky-luo/blogweb.git"
 JETTY_BASE_SUF="-jettybase"
 JETTY_BASE_DIR="$TMP_DIR/$PRO_NAME$JETTY_BASE_SUF"
+#ps -e|grep jetty|awk '{print $1}'|xargs kill -9
 if [ ! -d $PRO_DIR ]; then
     TMP_CUR_PWD=`pwd`
     echo "mkdir -p $PRO_DIR"
@@ -26,6 +27,7 @@ cd $TMP_CUR_PWD
 if [ ! -d $JETTY_BASE_DIR ]; then
     echo "mkdir -p $JETTY_BASE_DIR/webapps"
     mkdir -p $JETTY_BASE_DIR/webapps
+    cd $JETTY_BASE_DIR
     java -jar $JETTY_HOME/start.jar --add-to-startd=http,deploy,jsp
 fi
 cd $PRO_DIR
